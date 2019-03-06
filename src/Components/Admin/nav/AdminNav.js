@@ -21,6 +21,10 @@ const AdminNav = () => {
             linkTo: '/admin_associates/new_associate'
         },
         {
+            title: 'Gestión',
+            linkTo: '/admin_management'
+        },
+        {
             title: 'Actividades',
             linkTo: '/admin_events'
         },
@@ -35,10 +39,6 @@ const AdminNav = () => {
         {
             title: 'Nueva noticia',
             linkTo: '/admin_news/new_news'
-        },
-        {
-            title: 'Gestión',
-            linkTo: '/admin_management'
         }
     ]
 

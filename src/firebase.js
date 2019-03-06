@@ -26,11 +26,18 @@ var config = {
   // Try to create a folder in Firebase to record the associates
   const firebaseAssociates = firebaseDB.ref('associates');
 
+  // Try to create a folder in Firebase to record the managers
+  const firebaseManagers = firebaseDB.ref('managers');
+  const firebaseOffices = firebaseDB.ref('offices')
+
 export {
     firebase,
     firebaseMatches,
 
     firebaseAssociates,
+
+    firebaseManagers,
+    firebaseOffices,
 
     firebasePromotions,
     firebaseTeams,

@@ -13,6 +13,12 @@ import AdminAssociates from './Components/Admin/Associates';
 import AddEditAssociate from './Components/Admin/Associates/AddEditAssociate';
 import DetailsAssociate from './Components/Admin/Associates/DetailsAssociate';
 
+import Managers from './Components/Admin/Managers';
+import AddManager from './Components/Admin/Managers/AddManager';
+import EditManager from './Components/Admin/Managers/EditManager';
+import Offices from './Components/Admin/Managers/Offices';
+import AddEditOffice from './Components/Admin/Managers/OfficeAddEdit';
+
 import PrivateRoute from './Components/authRoutes/privateRoutes';
 import PublicRoute from './Components/authRoutes/publicRoutes';
 
@@ -24,6 +30,13 @@ const Routes = (props) => {
     <Layout>
       <Switch>
         
+        <PrivateRoute {...props} path="/admin_management/edit_office/:id" exact component={AddEditOffice}/>
+        <PrivateRoute {...props} path="/admin_management/new_office" exact component={AddEditOffice}/>
+        <PrivateRoute {...props} path="/admin_management/offices" exact component={Offices}/>
+        <PrivateRoute {...props} path="/admin_management/edit_manager/:id" exact component={EditManager}/>
+        <PrivateRoute {...props} path="/admin_management/new_manager" exact component={AddManager}/>
+        <PrivateRoute {...props} path="/admin_management" exact component={Managers}/>
+
         <PrivateRoute {...props} path="/admin_associates/new_associate" exact component={AddEditAssociate}/>
         <PrivateRoute {...props} path="/admin_associates/details_associate/:id" exact component={DetailsAssociate}/>
         <PrivateRoute {...props} path="/admin_associates/edit_associate/:id" exact component={AddEditAssociate}/>
