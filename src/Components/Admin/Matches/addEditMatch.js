@@ -305,7 +305,6 @@ class AddEditMatch extends Component {
                 formError: true
             })
         }
-        
     }
 
     componentDidMount() {

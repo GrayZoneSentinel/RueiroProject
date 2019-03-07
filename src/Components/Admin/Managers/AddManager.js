@@ -6,7 +6,8 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 
 import FileUploader from '../../ui/fileuploader';
 
-import { firebaseManagers, firebaseDB, firebase } from '../../../firebase';
+import { firebaseManagers, firebaseOffices, firebase, firebaseDB } from '../../../firebase';
+import { firebaseLooper } from '../../ui/misc';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
@@ -17,10 +18,11 @@ class AddManager extends Component {
     state = {
         isloading:true,
         managerId: '',
-        formType: '',
+        formType: 'Agregar Directivo',
         formError: false,
         formSuccess: '',
         defaultImg:'',
+        offices: [], 
         formdata: {
             nombre: {
                 element: 'input',
@@ -136,36 +138,12 @@ class AddManager extends Component {
                     type: 'select',
                     options: [
                         {
-                            key: "Administrador unico",
-                            value: "Administrador único"
+                            key: "Yes",
+                            value: "Yes"
                         },
                         {
-                            key: "Administrador solidario",
-                            value: "Administrador solidario"
-                        },
-                        {
-                            key: "Administrador mancomunado",
-                            value: "Administrador mancomunado"
-                        },
-                        {
-                            key: "Consejero",
-                            value: "Consejero"
-                        },
-                        {
-                            key: "CEO",
-                            value: "Chief Executive Officer"
-                        },
-                        {
-                            key: "CFO",
-                            value: "Chief Financial Officer"
-                        },
-                        {
-                            key: "COO",
-                            value: "Chief Operations Officer"
-                        },
-                        {
-                            key: "Directivo",
-                            value: "Directivo"
+                            key: "No",
+                            value: "No"
                         }
                     ]
                 },
@@ -212,22 +190,27 @@ class AddManager extends Component {
         })
     }
 
-    // updateFields = ( associate, associateId, type, defaultImg ) => {
+    updateFields = ( manager, officeOptions, offices, managerId, defaultImg ) => {
 
-    //     const newFormdata = { ...this.state.formdata }
+        const newFormdata = { ...this.state.formdata }
 
-    //     for(let key in newFormdata) {
-    //         newFormdata[key].value = associate[key];
-    //         newFormdata[key].valid = true;
-    //     } 
+        for(let key in newFormdata) {
+            if(manager) {
+                newFormdata[key].value = manager[key];
+                newFormdata[key].valid = true;
+            }
+            if(key === 'cargo') {
+                newFormdata[key].config.options = officeOptions
+            }
+        } 
         
-    //     this.setState({
-    //         associateId,
-    //         defaultImg,
-    //         formType: type,
-    //         formdata: newFormdata
-    //     })
-    // }
+        this.setState({
+            managerId,
+            defaultImg,
+            formdata: newFormdata,
+            offices
+        })
+    }
 
     successForm(message){
         this.setState({
@@ -251,12 +234,22 @@ class AddManager extends Component {
             formIsValid = this.state.formdata[key].valid && formIsValid;
         }
 
+        this.state.offices.forEach((office)=>{
+            if(office.abreviatura === dataToSubmit.abreviatura){
+                dataToSubmit['abreviatura'] = office.abreviatura
+            }
+            if(office.cargo === dataToSubmit.cargo){
+                dataToSubmit['cargo'] = office.cargo
+            }
+        })
+
         if(formIsValid){
+            // add manager
             firebaseManagers.push(dataToSubmit).then(()=>{
-                this.props.history.push('/admin_management');
+            this.props.history.push('/admin_management');
             }).catch((e)=>{
                 this.setState({formError:true})
-            })         
+            })            
         } else {
             this.setState({
                 formError: true
@@ -266,12 +259,26 @@ class AddManager extends Component {
  
     componentDidMount() {
         const managerId = this.props.match.params.id;
-       
-        if( !managerId ) {
+        const getCargos = (office) => {
+            firebaseOffices.once('value').then(snapshot => {
+                const offices = firebaseLooper(snapshot);
+                const officeOptions = [];
+
+                snapshot.forEach((childSnapshot)=>{
+                    officeOptions.push({
+                        key: childSnapshot.val().abreviatura,
+                        value: childSnapshot.val().abreviatura
+                    })
+                });
+                this.updateFields( office, officeOptions, offices)
+            })
+        }
+        if(!managerId){
             this.setState({
                 isloading:false,
-                formType: 'Agregar Directivo'
+                // formType: 'Agregar Directivo'
             })
+            getCargos(false)
         } else {
             firebaseDB.ref(`managers/${managerId}`).once('value')
             .then(snapshot => {
@@ -289,7 +296,6 @@ class AddManager extends Component {
                 })
             })
         }
-
     }
 
     resetImage = () => {

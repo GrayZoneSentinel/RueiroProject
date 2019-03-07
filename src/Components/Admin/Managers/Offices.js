@@ -42,10 +42,10 @@ class Offices extends Component {
         // console.log(this.state)
         return (
             <AdminLayout>
-                <div>
-                    <Grid container spacing={10}>
+                <div style={{marginLeft:"40px"}}>
+                    <Grid container spacing={24}>
                         <Grid item xs={6}>
-                            <Button style={{margin:"20px"}} variant="outlined" color="primary" href={`/admin_management/new_office`}>
+                            <Button style={{marginTop:"20px"}} variant="outlined" color="primary" href={`/admin_management/new_office`}>
                                 Crear cargo
                             </Button>
                         </Grid>
