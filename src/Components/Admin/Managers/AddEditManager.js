@@ -274,11 +274,10 @@ class AddEditManager extends Component {
         }
 
         if(!managerId){
-    //         this.setState({
-    //             isloading:false,
-    //             // formType: 'Agregar Directivo'
-    //         })
-    //         getCargos(false)
+            this.setState({
+                isloading:false,
+            })
+            getOffices(false, 'Incorporar directivo')
         } else {
             firebaseDB.ref(`managers/${managerId}`).once('value')
             .then((snapshot) => {
@@ -361,7 +360,7 @@ class AddEditManager extends Component {
                                         </Grid>
                                     </Grid>
                                     <Grid container spacing={24}>
-                                        <Grid item xs={12} sm={4}>
+                                        <Grid item xs={12} sm={3}>
                                             <FormField
                                                 id={'dni'}
                                                 formdata={this.state.formdata.dni}
@@ -375,7 +374,7 @@ class AddEditManager extends Component {
                                                 change={(element)=> this.updateForm(element)}
                                             />
                                         </Grid>
-                                        <Grid item xs={12} sm={4}>
+                                        <Grid item xs={12} sm={5}>
                                             <FormField
                                                 id={'cargo'}
                                                 formdata={this.state.formdata.cargo}
