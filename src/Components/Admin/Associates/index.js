@@ -8,6 +8,9 @@ import { firebaseLooper, reverseArray } from '../../ui/misc';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import LookDetailIcon from '../../../Resources/images/icons/magnifier-tool.png';
+import EditIcon from '../../../Resources/images/icons/edit.png';
+
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,6 +18,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
 
 
 class AdminAssociates extends Component {
@@ -40,18 +47,25 @@ class AdminAssociates extends Component {
         return (
             <AdminLayout>
                 <div>
+                    <Grid container spacing={24}>
+                        <Grid item xs={12}>
+                             <Button style={{margin:"20px 0 30px 0"}}  color="primary" href={`/admin_associates/new_associate`}>
+                                Añadir asociado
+                            </Button>
+                        </Grid>
+                    </Grid>
                     <Paper>
                         <Table>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>
-                                    <TableCell style={{width: 100}}><strong>Nombre</strong></TableCell>
-                                    <TableCell style={{width: 120}}><strong>Apellidos</strong></TableCell>
-                                    <TableCell><strong>Nacimiento</strong></TableCell>
-                                    <TableCell><strong>DNI</strong></TableCell>
+                                    <TableCell><strong>Nombre</strong></TableCell>
+                                    <TableCell><strong>Apellidos</strong></TableCell>
+                                    {/* <TableCell><strong>Nacimiento</strong></TableCell>
+                                    <TableCell><strong>DNI</strong></TableCell> */}
                                     <TableCell><strong>Teléfono</strong></TableCell>
                                     <TableCell><strong>Email</strong></TableCell>
-                                    <TableCell><strong>Incorporación</strong></TableCell>
-                                    <TableCell>Acciones</TableCell>
+                                    {/* <TableCell><strong>Incorporación</strong></TableCell> */}
+                                    <TableCell align="right">Acciones</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -60,20 +74,20 @@ class AdminAssociates extends Component {
                                         ?
                                         this.state.associates.map((associate,i) => (
                                             <TableRow key={i}>
-                                                <TableCell style={{width: 100}}>{associate.nombre}</TableCell>
-                                                <TableCell style={{width: 120}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
-                                                <TableCell>{associate.fechaNacimiento}</TableCell>
-                                                <TableCell>{associate.dni}</TableCell>
+                                                <TableCell>{associate.nombre}</TableCell>
+                                                <TableCell style={{fontWeight:"600"}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
+                                                {/* <TableCell>{associate.fechaNacimiento}</TableCell>
+                                                <TableCell>{associate.dni}</TableCell> */}
                                                 <TableCell>{associate.telefono}</TableCell>
                                                 <TableCell>{associate.correo}</TableCell>
-                                                <TableCell>{associate.fechaIncorporacion}</TableCell>
-                                                <TableCell>
-                                                    <Link style={{color: '#008ee0'}} to={`/admin_associates/edit_associate/${associate.id}`}>
-                                                        Editar -
-                                                    </Link>  
+                                                {/* <TableCell>{associate.fechaIncorporacion}</TableCell> */}
+                                                <TableCell style={{align:"center"}}> 
                                                     <Link style={{color: '#008ee0'}} to={`/admin_associates/details_associate/${associate.id}`}>
-                                                        - Detalles
+                                                        <img className="tableIcon" src={LookDetailIcon} alt="Ver" title="Detalles"/>
                                                     </Link>
+                                                    <Link style={{color: '#008ee0'}} to={`/admin_associates/edit_associate/${associate.id}`}>
+                                                         <img className="tableIcon" src={EditIcon} alt="Editar" title="Editar"/>
+                                                    </Link> 
                                                 </TableCell>
                                             </TableRow>
                                         ))

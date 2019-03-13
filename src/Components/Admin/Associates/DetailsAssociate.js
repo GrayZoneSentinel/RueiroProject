@@ -1,76 +1,87 @@
 import React, { Component } from 'react';
 import AdminLayout from '../../../Hoc/AdminLayout';
-import { Tag } from '../../ui/misc';
-import Reveal from 'react-reveal';
 
-import AssociateCards from './AssociateCards';
-
-import { firebaseAssociates, firebaseDB, firebase } from '../../../firebase';
-
+import Card from '../../ui/detailCard';
+import Fade from 'react-reveal/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+
+
+import { firebaseDB, firebase } from '../../../firebase';
+// import { firebaseLooper } from '../../ui/misc';
+// import { Promise } from 'core-js';
+// import { resolve } from 'q';
 
 class DetailsAssociate extends Component {
 
     state = {
-        show: false
+        isLoading: true,
+        // associates: [],
+        associateId: '',
+        defaultImage: '',
+        associateData: {
+            nombre: '',
+            primerApellido: '',
+            segundoApellido: '',
+            dni: '',
+            correo: '',
+            telefono: '',
+            fechaNacimiento: '',
+            fechaIncorporacion: '',
+            image: ''
+        }
     }
 
-  render() {
-    return (
-        <AdminLayout>
-            <Reveal
-                // onReveal = {()=>{
-                //     console.log('revealed')
-                // }}
-                fraction={0.7}
-                onReveal={()=>{
-                    this.setState({
-                        show: true
-                    })
-                }}
-            >
-                <div 
-                    className="home_meetplayers"
-                    // style={{background:`#ffffff url(${Stripes})`}}
-                >  
-                    <div className="container">
-                        <div className="home_meetplayers_wrapper">
-                            <div className="home_card_wrapper">
-                                <AssociateCards
-                                    show={this.props.show}
+    componentDidMount() {
+        const associateId = this.props.match.params.id
+
+        firebaseDB.ref(`associates/${associateId}`).once('value')
+        .then(snapshot => {
+            const associateData = snapshot.val();
+            firebase.storage().ref('associates')
+            .child( associateData.image ).getDownloadURL()
+            .then( url => {
+                this.setState({ associateData, associateId, url } );
+                this.setState({isloading:false})
+                // console.log(associateData.image)
+            })
+        })
+    }
+
+    render() {
+        // console.log(this.state.associateData);
+        return (
+            <AdminLayout>
+                <div className="detailsAssociate">
+                    <div>
+                        {/* Loader Spinner  */}
+                        {
+                            this.state.isloading
+                            ?
+                                <div className="admin_progress">
+                                    <CircularProgress thickness={4} style={{color:'#008ee0'}}/>
+                                </div>
+                            :
+                             <Fade>
+                                <Card
+                                    imagen = {this.state.associateData.image}
+                                    nombre = {this.state.associateData.nombre}
+                                    primerApellido = {this.state.associateData.primerApellido}
+                                    segundoApellido = {this.state.associateData.segundoApellido}
+                                    dni = {this.state.associateData.dni}
+                                    correo = {this.state.associateData.correo}
+                                    telefono = {this.state.associateData.telefono}
+                                    fechaIncorporacion = {this.state.associateData.fechaIncorporacion}
                                 />
-                            </div>
-                            <div className="home_text_wrapper">
-                                <div>
-                                    <Tag bck="#ffffff" size="20px" color="#0e1731" link={true} linkto={`/admin_associates/edit_associate/${this.props.associate.id}`}
-                                        add={{
-                                            display:'inline-block',
-                                            marginBottom: '30px',
-                                            border: '1px solid #0e1731'
-                                        }}
-                                    >
-                                       Editar datos
-                                    </Tag>
-                                </div>
-                                <div>
-                                    <Tag bck="#ffffff" size="20px" color="red" link={true} linkto={`/admin_associates/edit_associate/${this.state.associate.id}`}
-                                        add={{
-                                            display:'inline-block',
-                                            marginBottom: '30px',
-                                            border: '1px solid red'
-                                        }}
-                                    >
-                                      Baja asociado
-                                    </Tag>
-                                </div>
-                            </div>
-                        </div>
+                             </Fade>
+                                
+                                            
+                        }
                     </div>
                 </div>
-            </Reveal>   
-        </AdminLayout>
-    )
-  }
+            </AdminLayout>
+        )
+    }
 }
 
 export default DetailsAssociate;

@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 //Import the appbar from materialUI
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 
 //Import the link module from react-dom
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //Import the reusable logo component
 import { RueiroLogo } from '../ui/icons';
@@ -34,10 +34,10 @@ class Header extends Component {
                         />
                     </div>
                 </div>
-                {/* <Link to="/the_members">
-                    <Button color="primary"> Socios </Button>
+                <Link to="/sign_in">
+                    <Button color="primary"> Acceso asociados </Button>
                 </Link>
-                <Link to="/the_events">
+                {/* <Link to="/the_events">
                     <Button color="primary"> Actividades </Button>
                 </Link>
                 <Link to="/the_news">

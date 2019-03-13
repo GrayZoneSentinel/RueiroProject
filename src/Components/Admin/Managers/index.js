@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import AdminLayout from '../../../Hoc/AdminLayout';
-
 import { Link } from 'react-router-dom';
-
 
 import { firebaseManagers } from '../../../firebase';
 import { firebaseLooper, reverseArray } from '../../ui/misc';
@@ -10,16 +8,16 @@ import { firebaseLooper, reverseArray } from '../../ui/misc';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Grid from '@material-ui/core/Grid';
-
 import Button from '@material-ui/core/Button';
-
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+import LookDetailIcon from '../../../Resources/images/icons/magnifier-tool.png';
+import EditIcon from '../../../Resources/images/icons/edit.png';
 
 
 class AdminManagers extends Component {
@@ -45,7 +43,7 @@ class AdminManagers extends Component {
         return (
             <AdminLayout>
                 <div>
-                    <Grid container spacing={30}>
+                    <Grid container spacing={24}>
                         <Grid item xs={12}>
                              <Button style={{margin:"20px"}} variant="outlined" color="primary" href={`/admin_management/new_manager`}>
                                 Añadir directivo
@@ -53,9 +51,9 @@ class AdminManagers extends Component {
                             <Button style={{margin:"20px"}} variant="outlined" color="primary" href={`/admin_management/offices`}>
                                 Listado de cargos
                             </Button>
-                            <Button style={{margin:"20px"}} variant="outlined" color="secondary">
+                            {/* <Button style={{margin:"20px"}} variant="outlined" color="secondary">
                                 Eliminar directivo
-                            </Button>
+                            </Button> */}
                         </Grid>
                     </Grid>
                     <Paper>
@@ -87,10 +85,10 @@ class AdminManagers extends Component {
                                                 {/* <TableCell>{manager.correo}</TableCell> */}
                                                 <TableCell>
                                                     <Link style={{color: '#008ee0'}} to={`/admin_management/edit_manager/${manager.id}`}>
-                                                        Detalles - 
+                                                        <img className="tableIcon" src={LookDetailIcon} alt="Ver" title="Detalles"/>
                                                     </Link>
                                                     <Link style={{color: 'green'}} to={`/admin_management/edit_manager/${manager.id}`}>
-                                                        - Editar
+                                                        <img className="tableIcon" src={EditIcon} alt="Editar" title="Editar"/>
                                                     </Link>
                                                 </TableCell>
                                             </TableRow>

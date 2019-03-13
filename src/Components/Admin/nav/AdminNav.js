@@ -17,10 +17,6 @@ const AdminNav = () => {
             linkTo: '/admin_associates'
         },
         {
-            title: 'Alta asociado',
-            linkTo: '/admin_associates/new_associate'
-        },
-        {
             title: 'Gestión',
             linkTo: '/admin_management'
         },
@@ -29,16 +25,8 @@ const AdminNav = () => {
             linkTo: '/admin_events'
         },
         {
-            title: 'Nueva actividad',
-            linkTo: '/admin_events/new_event'
-        },
-        {
             title: 'Noticias',
             linkTo: '/admin_news'
-        },
-        {
-            title: 'Nueva noticia',
-            linkTo: '/admin_news/new_news'
         }
     ]
 

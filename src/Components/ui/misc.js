@@ -1,9 +1,7 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 export const Tag = (props) => {
-    
     const template = <div
         style={{
             background: props.bck,
@@ -11,17 +9,17 @@ export const Tag = (props) => {
             color: props.color,
             padding: '5px 10px',
             display: 'inline-block',
-            fontFamily: 'Playfair Display',
+            fontFamily: 'Righteous',
             ...props.add
         }}
     >
         {props.children}
     </div>
-    
-    if(props.link) {
+
+    if(props.link){
         return (
             <Link to={props.linkto}>
-              {template}
+                {template}
             </Link>
         )
     } else {
@@ -29,9 +27,8 @@ export const Tag = (props) => {
     }
 }
 
-// FIREBASE SNAPSHOT LOOPER UTILITY
 export const firebaseLooper = (snapshot) => {
-    const data = [];
+    let data = [];
     snapshot.forEach((childSnapshot)=>{
         data.push({
             ...childSnapshot.val(),
@@ -43,25 +40,28 @@ export const firebaseLooper = (snapshot) => {
 
 export const reverseArray = (actualArray) => {
     let reversedArray = [];
-    for(let i= actualArray.length-1; i>=0 ; i--){
+
+    for(let i= actualArray.length-1;i>=0;i--){
         reversedArray.push(actualArray[i])
     }
     return reversedArray;
 }
 
+
 export const validate = (element) => {
-    let error = [true, ''];
+    let error = [true,''];
 
     if(element.validation.email){
         const valid = /\S+@\S+\.\S+/.test(element.value);
-        const message = `${!valid ? 'Introduce un email válido' : ''}`;
-        error = !valid ? [valid, message] : error;
+        const message = `${!valid ? 'Must be a valid email':''}`;
+        error = !valid ? [valid,message]: error;
     }
 
-    if(element.validation.required) {
+    if(element.validation.required){
         const valid = element.value.trim() !== '';
-        const message = `${!valid ? 'Introduce tu correo electrónico': ''}`;
-        error = !valid ? [valid,message] : error
+        const message = `${!valid ? 'This field is required':''}`;
+        error = !valid ? [valid,message]: error;
     }
+
     return error;
 }

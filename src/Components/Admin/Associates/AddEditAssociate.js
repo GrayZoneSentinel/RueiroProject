@@ -10,7 +10,6 @@ import { firebaseAssociates, firebaseDB, firebase } from '../../../firebase';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper'
 
 class AddEditAssociate extends Component {
 
@@ -234,18 +233,14 @@ class AddEditAssociate extends Component {
                     this.setState({formError:true})
                 })
             }
-            
         } else {
-            // console.log('Error')
             this.setState({
                 formError: true
             })
         }
-        
     }
  
     componentDidMount() {
-
         const associateId = this.props.match.params.id;
         if( !associateId ) {
             this.setState({
