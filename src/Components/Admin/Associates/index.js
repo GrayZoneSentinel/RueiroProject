@@ -55,7 +55,7 @@ class AdminAssociates extends Component {
                         </Grid>
                     </Grid>
                     <Paper>
-                        <Table>
+                        <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>
                                     <TableCell><strong>Nombre</strong></TableCell>
@@ -82,10 +82,10 @@ class AdminAssociates extends Component {
                                                 <TableCell>{associate.correo}</TableCell>
                                                 {/* <TableCell>{associate.fechaIncorporacion}</TableCell> */}
                                                 <TableCell style={{align:"center"}}> 
-                                                    <Link style={{color: '#008ee0'}} to={`/admin_associates/details_associate/${associate.id}`}>
+                                                    <Link style={{color: '#62a2d3'}} to={`/admin_associates/details_associate/${associate.id}`}>
                                                         <img className="tableIcon" src={LookDetailIcon} alt="Ver" title="Detalles"/>
                                                     </Link>
-                                                    <Link style={{color: '#008ee0'}} to={`/admin_associates/edit_associate/${associate.id}`}>
+                                                    <Link style={{color: '#62a2d3'}} to={`/admin_associates/edit_associate/${associate.id}`}>
                                                          <img className="tableIcon" src={EditIcon} alt="Editar" title="Editar"/>
                                                     </Link> 
                                                 </TableCell>

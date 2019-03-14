@@ -241,12 +241,22 @@ class AddEditManager extends Component {
         })
 
         if(formIsValid){
-            // add manager
-            firebaseManagers.push(dataToSubmit).then(()=>{
-            this.props.history.push('/admin_management');
-            }).catch((e)=>{
-                this.setState({formError:true})
-            })            
+            // Update manager
+            if(this.state.formType === 'Editar directivo'){
+                firebaseDB.ref(`managers/${this.state.managerId}`)
+                .update(dataToSubmit).then(()=>{
+                    this.successForm('Actualizado')
+                }).catch((e)=>{
+                    this.setState({ formError: true })
+                })
+            // Add manager
+            } else {
+                firebaseManagers.push(dataToSubmit).then(()=>{
+                this.props.history.push('/admin_management');
+                }).catch((e)=>{
+                    this.setState({formError:true})
+                })       
+            }     
         } else {
             this.setState({
                 formError: true
@@ -287,35 +297,35 @@ class AddEditManager extends Component {
                 this.setState({
                     isloading:false
                 })
-    //             firebase.storage().ref('managers')
-    //             .child( managerData.image ).getDownloadURL()
-    //             .then( url => {
-    //                 this.updateFields( managerData, managerId, 'Editar directivo' , url );
-    //                 this.setState({isloading:false})
-    //             }).catch( e => {
-    //                 this.updateFields({
-    //                     ...managerData,
-    //                     image:''
-    //                 }, managerId, 'Editar directivo', '' )
-    //             })
+                // firebase.storage().ref('managers')
+                // .child( manager.image ).getDownloadURL()
+                // .then( url => {
+                //     this.updateFields( manager, managerId, 'Editar directivo', url );
+                //     this.setState({isloading:false})
+                // }).catch( e => {
+                //     this.updateFields({
+                //         ...manager,
+                //         image:''
+                //     }, managerId, 'Editar directivo', '' )
+                // })
             })
         }
     }
     
 
-    // resetImage = () => {
-    //     const newFormdata = {...this.state.formdata}
-    //     newFormdata['image'].value = '';
-    //     newFormdata['image'].valid= false;
-    //     this.setState({
-    //         defaultImg: '',
-    //         formdata: newFormdata
-    //     }) 
-    // }
+    resetImage = () => {
+        const newFormdata = {...this.state.formdata}
+        newFormdata['image'].value = '';
+        newFormdata['image'].valid= false;
+        this.setState({
+            defaultImg: '',
+            formdata: newFormdata
+        }) 
+    }
 
-    // storeFilename = (filename) => {
-    //     this.updateForm({id:'image'}, filename)
-    // }
+    storeFilename = (filename) => {
+        this.updateForm({id:'image'}, filename)
+    }
 
   render() {
     //console.log(this.state.formdata)
@@ -404,7 +414,7 @@ class AddEditManager extends Component {
                                         this.state.formError
                                         ?
                                             <div className="error_label">
-                                                Error: por favor, revisa los datos del nuevo directivo.
+                                                Por favor, revisa los datos.
                                             </div>
                                         :
                                             ''
