@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import AdminLayout from '../../../Hoc/AdminLayout';
 
-import Card from '../../ui/detailCard';
+import ImgMediaCard from '../../ui/detailCard';
 import Fade from 'react-reveal/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-
 
 import { firebaseDB, firebase } from '../../../firebase';
 // import { firebaseLooper } from '../../ui/misc';
 // import { Promise } from 'core-js';
-// import { resolve } from 'q';
 
 class DetailsAssociate extends Component {
 
     state = {
         isLoading: true,
-        // associates: [],
         associateId: '',
         defaultImage: '',
         associateData: {
@@ -34,18 +30,22 @@ class DetailsAssociate extends Component {
 
     componentDidMount() {
         const associateId = this.props.match.params.id
-
+        // let promise = '';
         firebaseDB.ref(`associates/${associateId}`).once('value')
-        .then(snapshot => {
+        .then( snapshot => {
             const associateData = snapshot.val();
             firebase.storage().ref('associates')
             .child( associateData.image ).getDownloadURL()
             .then( url => {
                 this.setState({ associateData, associateId, url } );
                 this.setState({isloading:false})
-                // console.log(associateData.image)
+                console.log(associateData.image)
+                this.setState({defaultImage: url })
             })
+            // this.setState({associateData, associateId, url });
+            // console.log(associateData)
         })
+        
     }
 
     render() {
@@ -53,7 +53,7 @@ class DetailsAssociate extends Component {
         return (
             <AdminLayout>
                 <div className="detailsAssociate">
-                    <div>
+                    <div className="detailsAssociateCard">
                         {/* Loader Spinner  */}
                         {
                             this.state.isloading
@@ -63,8 +63,9 @@ class DetailsAssociate extends Component {
                                 </div>
                             :
                              <Fade>
-                                <Card
-                                    imagen = {this.state.associateData.image}
+                                <ImgMediaCard
+                                    // image = {this.state.associateData.image}
+                                    image = {this.state.defaultImage}
                                     nombre = {this.state.associateData.nombre}
                                     primerApellido = {this.state.associateData.primerApellido}
                                     segundoApellido = {this.state.associateData.segundoApellido}
@@ -72,6 +73,7 @@ class DetailsAssociate extends Component {
                                     correo = {this.state.associateData.correo}
                                     telefono = {this.state.associateData.telefono}
                                     fechaIncorporacion = {this.state.associateData.fechaIncorporacion}
+                                    fechaNacimiento = {this.state.associateData.fechaNacimiento}
                                 />
                              </Fade>
                                 

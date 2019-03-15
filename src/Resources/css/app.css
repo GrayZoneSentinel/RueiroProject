@@ -599,10 +599,15 @@ footer .footer_discl {
 }
 
 .admin_container h2 {
-    margin: 0px 0px 50px 0px;
+    margin: 0px 0px 20px 0px;
     border-bottom: 1px solid #dbdbdb;
     color: #414141;
-    font-size: 40px;
+    font-size: 25px;
+}
+
+.admin_container p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
 }
 
 .editmatch_dialog_wrapper {
@@ -705,15 +710,20 @@ footer .footer_discl {
 /*=============================
           DETAILS CARD 
 ===============================*/
-
+.detailsAssociateCard {
+    width: 600px;
+}
 .detailsAssociate h2 {
     color: #62a2d3;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0px;
 } 
 .details_card_wrapper {
     background: #ffffff;
     border: 1px solid #ececec;
-    width: 600px;
-    padding: 10px 10px 20px 10px;
+    width: 500px;
+    padding: 10px 10px 10px 10px;
     font-family: 'Open Sans', sans-serif;
 }
 .details_card_wrapper .details_card_thmb {
@@ -741,6 +751,7 @@ footer .footer_discl {
     position: absolute;
     bottom: 16px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .details_card_wrapper .details_card_name span { 
@@ -771,5 +782,9 @@ footer .footer_discl {
 
 table {
     table-layout: auto;
-    width: 100%;
+    width: 100%; 
 }
+
+/* ====================== */
+/* ASSOCIATE DETAILS CARD */
+/* ====================== */

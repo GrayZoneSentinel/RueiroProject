@@ -45,8 +45,8 @@ const Routes = (props) => {
         <PrivateRoute {...props} path="/admin_management/offices" exact component={Offices}/>
         {/* //===== Managers ==== */}
         <PrivateRoute {...props} path="/admin_management/the_management" exact component={TheManagement}/>
-        <PrivateRoute {...props} path="/admin_management/edit_manager/:id" exact component={AddEditManager}/>
         <PrivateRoute {...props} path="/admin_management/new_manager" exact component={AddEditManager}/>
+        <PrivateRoute {...props} path="/admin_management/edit_manager/:id" exact component={AddEditManager}/>
         <PrivateRoute {...props} path="/admin_management" exact component={Managers}/>
         {/* //===== ASSOCIATES ==== */}
         <PrivateRoute {...props} path="/admin_associates/details_associate/:id" exact component={DetailsAssociate}/>

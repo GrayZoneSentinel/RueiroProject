@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AdminNav from '../Components/Admin/nav/AdminNav';
-import AdminFooter from '../Components/Footer/AdminFooter';
+// import AdminFooter from '../Components/Footer/AdminFooter';
 
 const AdminLayout = (props) => {
   return (
@@ -14,7 +14,7 @@ const AdminLayout = (props) => {
         {props.children}
       </div>
     </div>
-    <AdminFooter/>
+    {/* <AdminFooter/> */}
     </div>
   )
 }

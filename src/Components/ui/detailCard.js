@@ -10,13 +10,22 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+// Incorporate a table to display the Associate data
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+// import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+
 const styles = {
   card: {
-    maxWidth: 500,
+    widht: '100%'
   },
   media: {
-    // ⚠️ object-fit is not supported by IE 11.
-    objectFit: 'cover',
+    // objectFit: 'scale-down',
+    objectFit: 'contain',
+    padding: '10px',
   },
 };
 
@@ -27,27 +36,60 @@ function ImgMediaCard(props) {
       {/* <CardActionArea> */}
         <CardMedia
           component="img"
-          alt={props.primerApellido + `foto`}
+          alt={props.primerApellido + ` foto`}
           className={classes.media}
-          height="250"
-          image={props.imagen}
+          height="280"
+          // image={props.image}
+          src={props.image}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.nombre + ` ` +  props.primerApellido + ` ` +  props.segundoApellido}
           </Typography>
-          <Typography component="p">
-            DNI: {props.dni}
-          </Typography>
-          <Typography component="p">
-            Teléfono: {props.telefono}
-          </Typography>
-          <Typography component="p">
-            Correo: {props.correo}
-          </Typography>
-          <Typography component="p">
-            Fecha de incorporación: {props.fechaIncorporacion}
-          </Typography>
+          <Table>
+            <TableBody>
+              <TableRow style={{padding: '0px 20px 0px 20px'}}>
+                <TableCell style={{padding: '0px 20px 0px 20px', textAlign:"right"}}>
+                    DNI: 
+                </TableCell>
+                <TableCell style={{padding: '0px 20px 0px 20px'}}>
+                     {props.dni}
+                </TableCell>
+              </TableRow>
+              <TableRow style={{padding: '0px 20px 0px 20px'}}>
+                <TableCell style={{padding: '0px 20px 0px 20px', textAlign:"right"}}>
+                    Fecha de nacimiento:
+                </TableCell>
+                <TableCell style={{padding: '0px 20px 0px 20px'}}>
+                    {props.fechaNacimiento}
+                </TableCell>
+              </TableRow> 
+              <TableRow style={{padding: '0px 20px 0px 20px'}}>
+                <TableCell style={{padding: '0px 20px 0px 20px', textAlign:"right"}}>
+                    Teléfono:
+                </TableCell>
+                <TableCell style={{padding: '0px 20px 0px 20px'}}>
+                    {props.telefono}
+                </TableCell>
+              </TableRow>
+              <TableRow style={{padding: '0px 20px 0px 20px'}}>
+                <TableCell style={{padding: '0px 20px 0px 20px', textAlign:"right"}}>
+                    Correo: 
+                </TableCell>
+                <TableCell style={{padding: '0px 20px 0px 20px'}}>
+                    {props.correo}
+                </TableCell>
+              </TableRow>
+              <TableRow style={{padding: '0px 20px 0px 20px'}}>
+                <TableCell style={{padding: '0px 20px 0px 20px', textAlign:"right"}}>
+                    Fecha de incorporación:
+                </TableCell>
+                <TableCell style={{padding: '0px 20px 0px 20px'}}>
+                    {props.fechaIncorporacion}
+                </TableCell>
+              </TableRow>  
+            </TableBody>
+          </Table>
         </CardContent>
       {/* </CardActionArea> */}
       <CardActions>
@@ -55,7 +97,10 @@ function ImgMediaCard(props) {
           Enviar mail
         </Button>
         <Button size="small" color="primary">
-          Marcar aviso
+          Aviso
+        </Button>
+        <Button size="small" color="secondary" style={{marginLeft:'50px'}}>
+          Cerrar
         </Button>
       </CardActions>
     </Card>

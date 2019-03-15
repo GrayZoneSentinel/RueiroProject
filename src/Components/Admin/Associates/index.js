@@ -49,12 +49,15 @@ class AdminAssociates extends Component {
                 <div>
                     <Grid container spacing={24}>
                         <Grid item xs={12}>
-                             <Button style={{margin:"20px 0 30px 0"}}  color="primary" href={`/admin_associates/new_associate`}>
+                             <Button style={{margin:"20px 20px 30px 20px"}}  variant="contained" color="primary" href={`/admin_associates/new_associate`}>
                                 Añadir asociado
+                            </Button>
+                            <Button style={{margin:"20px 20px 30px 20px"}}  variant="contained" color="primary" href='#'>
+                                Enviar correo global
                             </Button>
                         </Grid>
                     </Grid>
-                    <Paper>
+                    <Paper style={{width:'80%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>

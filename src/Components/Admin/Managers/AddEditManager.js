@@ -165,8 +165,8 @@ class AddEditManager extends Component {
 
     updateForm(element, content = '') {
         // console.log(element)
-        const newFormdata = {...this.state.formdata};
-        const newElement = {...newFormdata[element.id]};
+        const newFormdata = {...this.state.formdata}
+        const newElement = {...newFormdata[element.id]}
 
         if( content === ''){
             newElement.value = element.event.target.value;
@@ -188,7 +188,7 @@ class AddEditManager extends Component {
         })
     }
 
-    updateFields = ( manager, officesOptions, offices, type, managerId ) => {
+    updateFields = ( manager, officesOptions, offices, type, managerId, defaultImg ) => {
         const newFormdata = { ...this.state.formdata }
         for(let key in newFormdata) {
             if(manager) {
@@ -203,7 +203,7 @@ class AddEditManager extends Component {
         this.setState({
             managerId,
             formType: type,
-            // defaultImg,
+            defaultImg,
             formdata: newFormdata,
             offices
         })
@@ -277,17 +277,32 @@ class AddEditManager extends Component {
                         key: childSnapshot.val().abreviatura,
                         value: childSnapshot.val().cargo
                     })
+                    this.updateFields( manager, officesOptions, offices, type, managerId )
                 });
                 // console.log(officesOptions)
-                this.updateFields( manager, officesOptions, offices, type, managerId )
+                firebase.storage().ref('managers')
+                .child( manager.image ).getDownloadURL()
+                .then( url => {
+                    // this.updateFields( manager, managerId, 'Editar directivo', url );
+                    this.updateFields( manager, officesOptions, offices, type, managerId, url )              
+                }).catch( e => {
+                    this.updateFields({
+                        ...manager,
+                        image:''
+                    }, managerId, 'Editar directivo', '' )
+                })
+                // console.log(manager)
+                // this.updateFields( manager, officesOptions, offices, type, managerId )
             })
         }
+        
 
         if(!managerId){
+            getOffices(false, 'Incorporar directivo')
             this.setState({
                 isloading:false,
+                formType: 'Incorporar directivo'
             })
-            getOffices(false, 'Incorporar directivo')
         } else {
             firebaseDB.ref(`managers/${managerId}`).once('value')
             .then((snapshot) => {
@@ -297,17 +312,6 @@ class AddEditManager extends Component {
                 this.setState({
                     isloading:false
                 })
-                // firebase.storage().ref('managers')
-                // .child( manager.image ).getDownloadURL()
-                // .then( url => {
-                //     this.updateFields( manager, managerId, 'Editar directivo', url );
-                //     this.setState({isloading:false})
-                // }).catch( e => {
-                //     this.updateFields({
-                //         ...manager,
-                //         image:''
-                //     }, managerId, 'Editar directivo', '' )
-                // })
             })
         }
     }
