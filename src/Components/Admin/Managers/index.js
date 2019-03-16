@@ -56,7 +56,7 @@ class AdminManagers extends Component {
                             </Button> */}
                         </Grid>
                     </Grid>
-                    <Paper>
+                    <Paper style={{width:'80%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>
@@ -67,7 +67,7 @@ class AdminManagers extends Component {
                                     <TableCell style={{color: '#008ee0'}}><strong>Nombramiento</strong></TableCell>
                                     {/* <TableCell><strong>Teléfono</strong></TableCell> */}
                                     {/* <TableCell><strong>Email</strong></TableCell> */}
-                                    <TableCell style={{color: 'red'}}>Acciones</TableCell>
+                                    <TableCell style={{color: 'red', textAlign:'center'}}>Acciones</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

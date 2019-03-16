@@ -57,7 +57,7 @@ class AdminAssociates extends Component {
                             </Button>
                         </Grid>
                     </Grid>
-                    <Paper style={{width:'80%'}}>
+                    <Paper style={{width:'90%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>
@@ -68,7 +68,7 @@ class AdminAssociates extends Component {
                                     <TableCell><strong>Teléfono</strong></TableCell>
                                     <TableCell><strong>Email</strong></TableCell>
                                     {/* <TableCell><strong>Incorporación</strong></TableCell> */}
-                                    <TableCell align="right">Acciones</TableCell>
+                                    <TableCell style={{textAlign:'center', color:'red'}}>Acciones</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
