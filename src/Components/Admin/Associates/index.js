@@ -57,7 +57,7 @@ class AdminAssociates extends Component {
                             </Button>
                         </Grid>
                     </Grid>
-                    <Paper style={{width:'90%'}}>
+                    <Paper style={{width:'70%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>

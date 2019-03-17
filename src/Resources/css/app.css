@@ -649,23 +649,34 @@ footer .footer_discl {
 ===============================*/
 
 .the_team_container {
-    margin-top: 96px;
+    margin-top: 50px;
     padding: 20px;
     background-size: 5px 5px !important;
     min-height:100vh;
 }
 
+/* .team_category_wrapper {
+    width: 500px;
+} */
+
+
 .team_category_wrapper .title {
-    font-size: 90px;
-    margin: 30px 0px;
+    font-size: 40px;
+    margin: 15px 0px;
     font-family: 'Playfair Display', serif;
     color: #d5ebfe;
 }
 
 .team_category_wrapper .team_cards {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    max-width: 450px;
 }
+
+.team_category_wrapper .team_cards h2 {
+    text-align: center
+}
+
 .team_category_wrapper .team_cards .item{
     margin-right: 20px;
     margin-bottom: 20px;

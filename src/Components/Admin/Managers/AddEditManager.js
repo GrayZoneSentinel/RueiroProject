@@ -283,7 +283,6 @@ class AddEditManager extends Component {
                 firebase.storage().ref('managers')
                 .child( manager.image ).getDownloadURL()
                 .then( url => {
-                    // this.updateFields( manager, managerId, 'Editar directivo', url );
                     this.updateFields( manager, officesOptions, offices, type, managerId, url )              
                 }).catch( e => {
                     this.updateFields({
@@ -292,7 +291,6 @@ class AddEditManager extends Component {
                     }, managerId, 'Editar directivo', '' )
                 })
                 // console.log(manager)
-                // this.updateFields( manager, officesOptions, offices, type, managerId )
             })
         }
         
@@ -315,7 +313,6 @@ class AddEditManager extends Component {
             })
         }
     }
-    
 
     resetImage = () => {
         const newFormdata = {...this.state.formdata}

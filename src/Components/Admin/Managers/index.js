@@ -51,12 +51,15 @@ class AdminManagers extends Component {
                             <Button style={{margin:"20px"}} variant="outlined" color="primary" href={`/admin_management/offices`}>
                                 Listado de cargos
                             </Button>
+                            <Button style={{margin:"20px"}} variant="outlined" color="primary" href={`/admin_management/the_management`}>
+                                Mapa
+                            </Button>
                             {/* <Button style={{margin:"20px"}} variant="outlined" color="secondary">
                                 Eliminar directivo
                             </Button> */}
                         </Grid>
                     </Grid>
-                    <Paper style={{width:'80%'}}>
+                    <Paper style={{width:'70%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>
@@ -67,7 +70,7 @@ class AdminManagers extends Component {
                                     <TableCell style={{color: '#008ee0'}}><strong>Nombramiento</strong></TableCell>
                                     {/* <TableCell><strong>Teléfono</strong></TableCell> */}
                                     {/* <TableCell><strong>Email</strong></TableCell> */}
-                                    <TableCell style={{color: 'red', textAlign:'center'}}>Acciones</TableCell>
+                                    <TableCell style={{color: 'red', textAlign:'center', padding: '0px 15px'}}>Acciones</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -76,19 +79,16 @@ class AdminManagers extends Component {
                                         ?
                                         this.state.managers.map((manager,i) => (
                                             <TableRow key={i}>
-                                                <TableCell style={{width: 100}}>{manager.nombre}</TableCell>
-                                                <TableCell style={{width: 120}}>{manager.primerApellido} {manager.segundoApellido}</TableCell>
-                                                {/* <TableCell>{manager.dni}</TableCell> */}
+                                                <TableCell style={{width: '100px'}}>{manager.nombre}</TableCell>
+                                                <TableCell style={{width: '130px', fontWeight:'600'}}>{manager.primerApellido} {manager.segundoApellido}</TableCell>
                                                 <TableCell>{manager.cargo}</TableCell>
                                                 <TableCell>{manager.fechaNombramiento}</TableCell>
-                                                {/* <TableCell>{manager.telefono}</TableCell> */}
-                                                {/* <TableCell>{manager.correo}</TableCell> */}
                                                 <TableCell>
                                                     <Link style={{color: '#008ee0'}} to={`/admin_management/edit_manager/${manager.id}`}>
-                                                        <img className="tableIcon" src={LookDetailIcon} alt="Ver" title="Detalles"/>
+                                                        <img className="tableIcon" style={{textAlign:'left', marginLeft:'25px'}} src={LookDetailIcon} alt="Ver" title="Detalles"/>
                                                     </Link>
                                                     <Link style={{color: 'green'}} to={`/admin_management/edit_manager/${manager.id}`}>
-                                                        <img className="tableIcon" src={EditIcon} alt="Editar" title="Editar"/>
+                                                        <img className="tableIcon" style={{textAlign:'right', paddingRight:'15px'}} src={EditIcon} alt="Editar" title="Editar"/>
                                                     </Link>
                                                 </TableCell>
                                             </TableRow>

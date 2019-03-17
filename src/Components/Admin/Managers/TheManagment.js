@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AdminLayout from '../../../Hoc/AdminLayout';
 
-import PlayerCard from '../../ui/playerCard';
+import ImgMediaCard from '../../ui/managementCard';
 import Fade from 'react-reveal/Fade';
 import { firebaseManagers, firebase } from '../../../firebase';
 import { firebaseLooper } from '../../ui/misc';
@@ -49,11 +49,15 @@ class TheManagement extends Component {
                         ?
                             <Fade left key={i}>
                                 <div className="item">
-                                    <PlayerCard
-                                        number = {i++}
-                                        name = {manager.nombre}
-                                        lastname = {manager.primerApellido + manager.segundoApellido} 
-                                        bck = {manager.url}
+                                    <ImgMediaCard
+                                        image = {manager.url}
+                                        nombre = {manager.nombre}
+                                        primerApellido = {manager.primerApellido}
+                                        segundoApellido = {manager.segundoApellido} 
+                                        dni = {manager.dni}
+                                        correo = {manager.correo}
+                                        telefono = {manager.telefono}
+                                        fechaNombramiento = {manager.fechaNombramiento}
                                     />
                                 </div>
                             </Fade>
@@ -85,7 +89,7 @@ class TheManagement extends Component {
                                 <div className="team_category_wrapper">
                                     <div className="title">Chief Operations Officer</div>
                                     <div className="team_cards">
-                                        {this.showManagersByCargo('CEO')}
+                                        {this.showManagersByCargo('COO')}
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +98,14 @@ class TheManagement extends Component {
                                     <div className="title">Chief Financial Officer</div>
                                     <div className="team_cards">
                                         {this.showManagersByCargo('CFO')}
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="team_category_wrapper">
+                                    <div className="title">Director General</div>
+                                    <div className="team_cards">
+                                        {this.showManagersByCargo('DG')}
                                     </div>
                                 </div>
                             </div>
