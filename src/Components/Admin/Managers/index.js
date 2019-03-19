@@ -59,7 +59,7 @@ class AdminManagers extends Component {
                             </Button> */}
                         </Grid>
                     </Grid>
-                    <Paper style={{width:'70%'}}>
+                    <Paper style={{width:'80%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>

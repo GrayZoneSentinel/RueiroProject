@@ -57,17 +57,14 @@ class AdminAssociates extends Component {
                             </Button>
                         </Grid>
                     </Grid>
-                    <Paper style={{width:'70%'}}>
+                    <Paper style={{width:'80%'}}>
                         <Table style={{tableLayout: 'auto'}}>
                             <TableHead>
                                 <TableRow style={{textTransform: 'uppercase'}}>
-                                    <TableCell><strong>Nombre</strong></TableCell>
-                                    <TableCell><strong>Apellidos</strong></TableCell>
-                                    {/* <TableCell><strong>Nacimiento</strong></TableCell>
-                                    <TableCell><strong>DNI</strong></TableCell> */}
-                                    <TableCell><strong>Teléfono</strong></TableCell>
-                                    <TableCell><strong>Email</strong></TableCell>
-                                    {/* <TableCell><strong>Incorporación</strong></TableCell> */}
+                                    <TableCell style={{color: '#008ee0'}}><strong>Nombre</strong></TableCell>
+                                    <TableCell style={{color: '#008ee0'}}><strong>Apellidos</strong></TableCell>
+                                    <TableCell style={{color: '#008ee0'}}><strong>Teléfono</strong></TableCell>
+                                    <TableCell style={{color: '#008ee0'}}><strong>Email</strong></TableCell>
                                     <TableCell style={{textAlign:'center', color:'red'}}>Acciones</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -79,11 +76,8 @@ class AdminAssociates extends Component {
                                             <TableRow key={i}>
                                                 <TableCell>{associate.nombre}</TableCell>
                                                 <TableCell style={{fontWeight:"600"}}>{associate.primerApellido} {associate.segundoApellido}</TableCell>
-                                                {/* <TableCell>{associate.fechaNacimiento}</TableCell>
-                                                <TableCell>{associate.dni}</TableCell> */}
                                                 <TableCell>{associate.telefono}</TableCell>
                                                 <TableCell>{associate.correo}</TableCell>
-                                                {/* <TableCell>{associate.fechaIncorporacion}</TableCell> */}
                                                 <TableCell style={{align:"center"}}> 
                                                     <Link style={{color: '#62a2d3'}} to={`/admin_associates/details_associate/${associate.id}`}>
                                                         <img className="tableIcon" src={LookDetailIcon} alt="Ver" title="Detalles"/>

@@ -99,7 +99,7 @@ function ImgMediaCard(props) {
         <Button size="small" color="primary">
           Aviso
         </Button>
-        <Button size="small" color="secondary" style={{marginLeft:'50px'}}>
+        <Button size="small" color="secondary" style={{marginLeft:'50px'}} href="/admin_associates">
           Cerrar
         </Button>
       </CardActions>
