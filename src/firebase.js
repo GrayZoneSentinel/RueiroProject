@@ -22,24 +22,27 @@ var config = {
   const firebaseMatches = firebaseDB.ref('matches');
   const firebasePromotions = firebaseDB.ref('promotions');
   const firebaseTeams = firebaseDB.ref('teams');
-
   // Try to create a folder in Firebase to record the associates
   const firebaseAssociates = firebaseDB.ref('associates');
-
   // Try to create a folder in Firebase to record the managers
   const firebaseManagers = firebaseDB.ref('managers');
   const firebaseOffices = firebaseDB.ref('offices')
+  // Try to create a folder in Firebase to record the events
+  const firebaseEvents = firebaseDB.ref('events');
 
 export {
     firebase,
-    firebaseMatches,
-
+    // ASSOCIATES DATABASE CONST
     firebaseAssociates,
-
+    // MANAGERS DATABASE CONST
     firebaseManagers,
     firebaseOffices,
-
+    // EVENTS DATABASE CONST
+    firebaseEvents,
+    // MISCELANEA DATABASE CONST
+    firebaseMatches,
     firebasePromotions,
     firebaseTeams,
+    // DATABASE CONST
     firebaseDB
 }

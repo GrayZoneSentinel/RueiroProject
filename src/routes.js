@@ -25,6 +25,7 @@ import Offices from './Components/Admin/Managers/Offices';
 import AddEditOffice from './Components/Admin/Managers/OfficeAddEdit';
 //===== Events routes =====//
 import Events from './Components/Admin/Events';
+import AddEditEvent from './Components/Admin/Events/AddEditEvent';
 //===== News routes =====//
 import News from './Components/Admin/News';
 
@@ -36,7 +37,8 @@ const Routes = (props) => {
       <Switch>
         {/* //===== NEWS ==== */}
         <PrivateRoute {...props} path="/admin_news" exact component={News}/>
-        {/* //===== EVENTS ==== */}
+        {/* //===== EVENTS PRIVATE ROUTES ==== */}
+        <PrivateRoute {...props} path="/admin_events/new_event" exact component={AddEditEvent}/>
         <PrivateRoute {...props} path="/admin_events" exact component={Events}/>
         {/* //===== MANAGEMENT ==== */}
         {/* //===== Offices ==== */}

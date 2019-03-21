@@ -27,6 +27,10 @@ const AdminNav = () => {
         {
             title: 'Noticias',
             linkTo: '/admin_news'
+        },
+        {
+            title: 'Finanzas',
+            linkTo: '/admin_finance'
         }
     ]
 

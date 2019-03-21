@@ -841,9 +841,11 @@ table {
 
 .event_card_wrapper {
     margin: 10px;
+    margin-top: 40px;
     height: auto;
-    display: block;
-    position: absolute;
+    display: table;
+    /* display: block; */
+    /* position: absolute; */
 }
 
 .event_card_wrapper .event_card_wrapper_left {
@@ -851,7 +853,8 @@ table {
     min-height: 170px;
     display: inline-block;
     float: left;
-    position: relative;
+    padding-top: 20px;
+    /* position: relative; */
 }
 
 .event_card_wrapper .event_card_wrapper_left .event_card_wrapper_thumbnail {
@@ -864,12 +867,14 @@ table {
 .event_card_wrapper .event_card_wrapper_right {
     display: inline-block;
     float: right;
-    position: relative;
+    /* position: relative; */
     padding-right: 30px;
+    padding-bottom: 20px;
 } 
 .event_card_wrapper .event_card_wrapper_right h3 {
     color: #457396;
     font-size: 20px;
     padding: 0 20px 10px 20px;
     text-align: left;
+    padding-top: 20px;
 }

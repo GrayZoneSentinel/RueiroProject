@@ -4,10 +4,31 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // PAPER IMPORTS
 import EventsPaper from '../../ui/eventsPaper';
+// FIREBASE IMPORTS
+import { firebaseEvents } from '../../../firebase';
+import { firebaseLooper, reverseArray } from '../../ui/misc';
 
 class Events extends Component {
+
+    state = {
+        isLoading:true,
+        events: []
+    }
+
+    componentDidMount() {
+        firebaseEvents.once('value').then(snapshot =>{
+            const events = firebaseLooper(snapshot);
+
+            this.setState({
+                isloading: false,
+                events: reverseArray(events)
+            })
+        });
+    }
+
     render() {
         return (
             <AdminLayout>
@@ -30,14 +51,26 @@ class Events extends Component {
                                         </Button>
                                     </div>
                                 {/* </Paper> */}
-                                <Paper className="events_wrapper_left">
-                                    {/* BRING THE EVENTS CARDS LOOP */}
-                                    <EventsPaper></EventsPaper>
-                                </Paper>
+                                    {  this.state.events 
+                                                ?
+                                                    this.state.events.map((event,i) => (
+                                                        <Paper className="events_wrapper_left" key={i}>
+                                                            <EventsPaper
+                                                                titulo = {event.titulo}
+                                                                fechaCelebracion = {event.fechaCelebracion}
+                                                                minAvalaibleAttendance = {event.minAvalaibleAttendance}
+                                                                maxAvalaibleAttendance = {event.maxAvalaibleAttendance}
+                                                            />
+                                                        </Paper>
+                                                    ))
+                                                :
+                                                null  
+                                    }          
+                                
                             </Grid>
                             <Grid item xs={3}>
                                 <Paper className="events_wrapper_right">
-                                    <Button style={{margin:"10px", minWidth: '180px', textAlign:"center"}}  variant="outlined" size="medium" color="primary" href="#">
+                                    <Button style={{margin:"10px", minWidth: '180px', textAlign:"center"}}  variant="outlined" size="medium" color="primary" href="/admin_events/new_event">
                                         Nueva actividad
                                     </Button>
                                     <Button style={{margin:"10px", minWidth: '180px', textAlign:"center"}}  variant="outlined" size="medium" color="primary" href="#">
