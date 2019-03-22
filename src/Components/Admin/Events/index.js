@@ -37,8 +37,6 @@ class Events extends Component {
                     <div className="events_wrapper">
                         <Grid container spacing={32}>
                             <Grid item xs={9}>
-                                {/* <Grid><h3>Listado de actividades</h3></Grid> */}
-                                {/* <Paper className="events_wrapper_left_filters_paper"> */}
                                     <div className="events_wrapper_left_filters_paper">
                                         <Button style={{margin:"10px", minWidth: '180px', textAlign:"center"}}  size="small" color="default" href="#">
                                             Todas
@@ -57,6 +55,7 @@ class Events extends Component {
                                                         <Paper className="events_wrapper_left" key={i}>
                                                             <EventsPaper
                                                                 titulo = {event.titulo}
+                                                                description = {event.description}
                                                                 fechaCelebracion = {event.fechaCelebracion}
                                                                 minAvalaibleAttendance = {event.minAvalaibleAttendance}
                                                                 maxAvalaibleAttendance = {event.maxAvalaibleAttendance}
