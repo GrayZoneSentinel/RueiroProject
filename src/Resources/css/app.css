@@ -886,3 +886,12 @@ table {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
 }
+
+.expandableComponent h4 {
+    padding: 0;
+    letter-spacing: 0.1em;
+    font-size: 14px;
+    margin: 0;
+    text-transform: uppercase;
+    color: #457396;
+}

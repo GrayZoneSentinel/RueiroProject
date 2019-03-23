@@ -29,16 +29,13 @@ const EventCard = (props) => {
                   <Table style={{width:'100%'}}>
                     <TableBody>
                         <TableRow>
-                          <TableCell colspan={2} style={{width:'100%', textAlign:'justify', padding:'15px 5px'}}>
+                          <TableCell colspan={2} style={{lineHeight:'1.5rem', fontSize:'14px', width:'100%', textAlign:'justify', padding:'15px 5px'}}>
                             {props.description}
                           </TableCell>
                         </TableRow>
                         <TableRow>
-                          <TableCell>
-                             Fecha de celebración:
-                          </TableCell>
-                          <TableCell>
-                            {props.fechaCelebracion} 
+                          <TableCell colspan={2}>
+                             Fecha de celebración:  {props.fechaCelebracion} 
                           </TableCell>
                         </TableRow>
                         <TableRow>
@@ -56,6 +53,9 @@ const EventCard = (props) => {
                   <div className="expand_info_card">
                     <ControlledExpansionPanels/>
                   </div>
+                  {/* <div className="expand_info_card">
+                    <ControlledExpansionPanels/>
+                  </div> */}
                 </div>
               </div>
              </Grid>

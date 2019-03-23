@@ -4,7 +4,7 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 // PAPER IMPORTS
 import EventsPaper from '../../ui/eventsPaper';
 // FIREBASE IMPORTS
@@ -86,9 +86,6 @@ class Events extends Component {
                                     </Button>
                                     <Button style={{margin:"10px", minWidth: '180px', textAlign:"center"}}  variant="outlined" size="medium" color="default" href="#">
                                         Estadísticas
-                                    </Button>
-                                    <Button style={{margin:"10px", minWidth: '180px', textAlign:"center"}}  variant="outlined" size="medium" color="secondary" href="#">
-                                        Cancelar evento
                                     </Button>
                                 </Paper>
                             </Grid>
